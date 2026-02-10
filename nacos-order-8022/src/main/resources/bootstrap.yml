@@ -1,0 +1,40 @@
+server:
+  port: 8022
+
+spring:
+  application:
+    name: cloud-nacos-order-consumer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: 289d1078-8325-4531-b196-086aa8ba6c73
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yaml
+        GROUP: DEV_GROUP
+        namespace: 289d1078-8325-4531-b196-086aa8ba6c73
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:8080
+      ds1-flow: # 这个名字任意起
+        nacos:
+          server-addr: 127.0.0.1:8848
+          data-id: cloud-nacos-order-consumer # 和 nacos中保持对应
+#          username: nacos
+#          password: nacos
+          namespace: 289d1078-8325-4531-b196-086aa8ba6c73  # 和nacos中保持对应
+          group-id: DEV_GROUP # 和nacos中保持对应
+          rule-type: flow # 规则类型：流控
+          data-type: json # 对于 nacos 数据类型
+
+#nacos config ${prefix}-${spring.profiles.active}.${file-extension}
+
+feign:
+  sentinel:
+    enabled: true
+
+
+
+
+

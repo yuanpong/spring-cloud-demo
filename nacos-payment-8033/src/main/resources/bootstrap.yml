@@ -1,0 +1,26 @@
+server:
+  port: 8033
+
+spring:
+  application:
+    name: cloud-nacos-payment-provider
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: 289d1078-8325-4531-b196-086aa8ba6c73
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yaml
+        GROUP: DEV_GROUP
+        namespace: 289d1078-8325-4531-b196-086aa8ba6c73
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:8080
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

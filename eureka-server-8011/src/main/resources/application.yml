@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: eureka-server-8011
+server:
+  port: 8011
+
+
+eureka:
+  instance:
+    hostname: eurekaserver8011.com #eureka 服务端的实例名称
+  client:
+    #false 表示不向注册中心注册自己
+    register-with-eureka: false
+    #false表示自己端就是注册中心，我的职责就是维护服务实例，并不需要去检索服务
+    fetch-registry: false
+    service_url:
+      defaultZone: http://eurekaserver8012.com:8012/eureka/
+  server:
+    #关闭自我保护机制，保证不可用服务被及时剔除
+    enable-self-preservation: false
+    #扫描失效服务的间隔时间（单位毫秒，默认是60*1000）即60秒
+    eviction-interval-timer-in-ms: 10000
